@@ -13,7 +13,7 @@ public class Board {
     public void clearBoard(){
         for(int i=0;i<height;i++){
             for(int j=0;j<width;j++){
-                boardarray[i][j] = 0;
+                boardarray[j][i] = 0;
             }
         }
     }
@@ -34,4 +34,7 @@ public class Board {
         return height;
     }
 
+    public void setPiece(int x , int y, int type){
+        boardarray[x][y] =type;
+    }
 }
