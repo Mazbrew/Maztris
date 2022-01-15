@@ -5,6 +5,7 @@ public class Main {
         //game initialization 
         Board board = new Board(10,20);
         FrameStuff frame = new FrameStuff();
+        GamePanel panel = new GamePanel(frame);
         PieceStack pieceStack = new PieceStack();
         Piece piece = new Piece(board,pieceStack);
 
