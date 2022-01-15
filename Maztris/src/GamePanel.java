@@ -5,12 +5,12 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements KeyListener{
-    private FrameStuff frame;
-    boolean flag;
+    private int moveX = 0;
+    private int moveXSpeed = 1;
+
 
     public GamePanel(FrameStuff frame){
         super();
-        this.frame = frame;
         this.setBounds(0,0,frame.getWidth(),frame.getHeight());
         this.setBackground(Color.BLACK);
         this.addKeyListener(this);
@@ -21,27 +21,32 @@ public class GamePanel extends JPanel implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
+
         
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
         if(e.getKeyCode()== KeyEvent.VK_UP){
-            this.setBackground(Color.green);
+            
         }else if(e.getKeyCode()== KeyEvent.VK_DOWN){
-            this.setBackground(Color.red);
+            
         }else if(e.getKeyCode()== KeyEvent.VK_LEFT){
-            this.setBackground(Color.blue);
+            moveX=-moveXSpeed;
         }else if(e.getKeyCode()== KeyEvent.VK_RIGHT){
-            this.setBackground(Color.MAGENTA);
+            moveX=moveXSpeed;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-        
+
+    }
+
+    public int getmoveX(){
+        return moveX;
+    }
+    public void resetmoveX(){
+        moveX=0;
     }
 }

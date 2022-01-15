@@ -7,12 +7,12 @@ public class Main {
         FrameStuff frame = new FrameStuff();
         GamePanel panel = new GamePanel(frame);
         PieceStack pieceStack = new PieceStack();
-        Piece piece = new Piece(board,pieceStack);
+        Piece piece = new Piece(board,pieceStack,panel);
 
         //game timer
         while(true){
             if(piece.getPlaced()==true){
-                piece = new Piece(board,pieceStack);
+                piece = new Piece(board,pieceStack,panel);
             }
             System.out.print("\033[H\033[2J");  
             System.out.flush();  
@@ -22,8 +22,10 @@ public class Main {
                 }
                 System.out.println();
             }
-            piece.MoveY();
-            TimeUnit.MILLISECONDS.sleep(100);
+            piece.moveX();
+            piece.moveY();
+            
+            TimeUnit.MILLISECONDS.sleep(300);
         }
     }
 }
