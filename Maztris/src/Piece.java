@@ -23,6 +23,7 @@ public class Piece extends PieceStack{
     public void pieceAssign(){
         if(pieceStack.stack.isEmpty()){
             pieceStack.fillstack();
+            pieceType = pieceStack.stack.remove(0);
         }else if(!pieceStack.stack.isEmpty()){
             pieceType = pieceStack.stack.remove(0);
         }

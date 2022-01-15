@@ -5,7 +5,7 @@ public class Main {
         //game initialization 
         Board board = new Board(10,20);
         FrameStuff frame = new FrameStuff();
-        GamePanel panel = new GamePanel(frame);
+        GamePanel panel = new GamePanel(frame,board);
         PieceStack pieceStack = new PieceStack();
         Piece piece = new Piece(board,pieceStack,panel);
 
@@ -25,7 +25,8 @@ public class Main {
             piece.moveX();
             piece.moveY();
             
-            TimeUnit.MILLISECONDS.sleep(300);
+            TimeUnit.MILLISECONDS.sleep(100);
+            panel.repaint();
         }
     }
 }
