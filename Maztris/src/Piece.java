@@ -4,6 +4,7 @@ public class Piece extends PieceStack{
     private int yLocation =  0;
     private int pieceType;
     private int dropDelay;
+    private final int dropDelayLim=3;
     private boolean placed;
     private PieceStack pieceStack;
 
@@ -30,16 +31,26 @@ public class Piece extends PieceStack{
     }
 
     public void moveY(){
-        //if at limit or if there is a piece below then don't move and increase delay
-        if(yLocation==board.getHeight()-1 || board.getTileValue(xLocation, yLocation+1)!=0){
-            dropDelay+=1;
-        }
-        //if not at limit and no piece obstructing then move
-        else if(yLocation<board.getHeight()-1 && board.getTileValue(xLocation, yLocation+1)==0){
+        if(panel.gethardDrop()==true){
             board.setPiece(xLocation, yLocation, 0);
-            yLocation+=1;
+            while(yLocation<board.getHeight()-1 && board.getTileValue(xLocation, yLocation+1)==0){
+                yLocation+=1;    
+            }
             board.setPiece(xLocation, yLocation, pieceType);
-                       
+            dropDelay = dropDelayLim;
+            panel.resethardDrop();
+        }else if(panel.gethardDrop()==false){
+             //if at limit or if there is a piece below then don't move and increase delay
+            if(yLocation==board.getHeight()-1 || board.getTileValue(xLocation, yLocation+1)!=0){
+                dropDelay+=1;
+            }
+            //if not at limit and no piece obstructing then move
+            else if(yLocation<board.getHeight()-1 && board.getTileValue(xLocation, yLocation+1)==0){
+                board.setPiece(xLocation, yLocation, 0);
+                yLocation+=1;
+                board.setPiece(xLocation, yLocation, pieceType);
+                        
+            }
         }
         dropDelayCheck();
     }
@@ -55,8 +66,9 @@ public class Piece extends PieceStack{
 
     public void dropDelayCheck(){
         switch(dropDelay){
-            case 3:
+            case dropDelayLim:
                 placed = true;
+                board.checkLineClear();
                 break;
         }
     }

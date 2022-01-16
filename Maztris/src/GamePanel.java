@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements KeyListener{
     private int moveX = 0;
     private int moveXSpeed = 1;
+    private boolean hardDrop = false;
     private Board board;
 
 
@@ -95,6 +96,8 @@ public class GamePanel extends JPanel implements KeyListener{
             moveX=-moveXSpeed;
         }else if(e.getKeyCode()== KeyEvent.VK_RIGHT){
             moveX=moveXSpeed;
+        }else if(e.getKeyCode()== KeyEvent.VK_SPACE){
+            hardDrop=true;
         }
     }
 
@@ -108,5 +111,11 @@ public class GamePanel extends JPanel implements KeyListener{
     }
     public void resetmoveX(){
         moveX=0;
+    }
+    public boolean gethardDrop(){
+        return hardDrop;
+    }
+    public void resethardDrop(){
+        hardDrop=false;
     }
 }
