@@ -1,5 +1,3 @@
-import java.util.zip.CheckedInputStream;
-
 public class Piece extends PieceStack{
     private Board board;
     private int xLocation = 3;
