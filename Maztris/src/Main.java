@@ -20,7 +20,7 @@ public class Main {
                 for(int j =0; j<board.getWidth();j++){
                     System.out.print(board.getTileValue(j, i));
                 }
-                System.out.println();
+                System.out.println(" "+piece.something()+" "+piece.getylocation());
             }
             piece.moveX();
             piece.moveY();
