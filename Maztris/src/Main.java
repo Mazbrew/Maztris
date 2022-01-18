@@ -16,7 +16,7 @@ public class Main {
             }
             System.out.print("\033[H\033[2J");  
             System.out.flush();  
-            for(int i =0; i<board.getHeight();i++){
+            for(int i =1; i<board.getHeight();i++){
                 for(int j =0; j<board.getWidth();j++){
                     System.out.print(board.getTileValue(j, i));
                 }

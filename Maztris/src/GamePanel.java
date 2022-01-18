@@ -14,12 +14,13 @@ public class GamePanel extends JPanel implements KeyListener{
 
     public GamePanel(FrameStuff frame, Board board){
         super();
+        frame.add(this);
         this.board = board;
         this.setBounds(0,0,frame.getWidth(),frame.getHeight());
         this.addKeyListener(this);
         this.setFocusable(true);
         this.requestFocus();
-        frame.add(this);
+        
     }
 
     @Override
@@ -42,7 +43,7 @@ public class GamePanel extends JPanel implements KeyListener{
         7- Z
         */
 
-        for(int i=0;i<board.getHeight();i++){
+        for(int i=1;i<board.getHeight();i++){
             for(int j=0; j<board.getWidth();j++){
                 color = board.getTileValue(j, i);
                 switch(color){

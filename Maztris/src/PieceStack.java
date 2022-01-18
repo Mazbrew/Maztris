@@ -3,7 +3,7 @@ import java.util.Collections;
 
 //stack for checking the pieces
 public class PieceStack {
-    int[] typeArray= {1,2,3,4,5,6,7};
+    int[] typeArray= {1,1,1,1,1,1,1};
     ArrayList<Integer> stack = new ArrayList<Integer>();
 
     public PieceStack(){

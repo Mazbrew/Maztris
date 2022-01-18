@@ -6,7 +6,7 @@ public class Board {
     public Board(int width,int height){
         this.width = width;
         this.height= height;
-        boardarray = new int[width][height];
+        boardarray = new int[width][height+1];
         clearBoard();
     }
 
@@ -67,7 +67,7 @@ public class Board {
         return height;
     }
 
-    public void setPiece(int x , int y, int type){
+    public void setTile(int x , int y, int type){
         boardarray[x][y] =type;
     }
 }
