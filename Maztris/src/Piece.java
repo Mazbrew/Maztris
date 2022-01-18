@@ -10,8 +10,8 @@ public class Piece extends PieceStack{
 
     private GamePanel panel;
 
-    private int pieceSize;
-    private int[][] pieceMatrix;
+    public int pieceSize;
+    public int[][] pieceMatrix;
     private int[][] t_piece = 
     {{0,1,0},
     {1,1,1},
@@ -228,6 +228,27 @@ public class Piece extends PieceStack{
         return check;
     }
 
+    private boolean checkOverlap(int checkx,int checky, int[][] tempMatrix) {
+        boolean check = false;
+
+        for(int i=0;i<pieceSize;i++){
+            if(checkEmptyLineY(i)==false){
+                for(int j=0;j<pieceSize;j++){
+                    if(board.getTileValue(checkx+j, checky+i) !=0 && tempMatrix[i][j]!=0){
+                        check = true;
+                        break;
+                    }else{
+                        check=false;
+                    }
+                }
+                if(check == true){
+                    break;
+                }
+            }
+        }
+        return check;
+    }
+
     public void moveY(){
         if(panel.gethardDrop()==true){
             clearPiece();
@@ -249,8 +270,8 @@ public class Piece extends PieceStack{
     }
 
     public void moveX(){
-        clearPiece();
         if((panel.getmoveX()>0 &&  xLocation+getEmptyLineWidth() != board.getWidth()) || panel.getmoveX()<0 && xLocation!=0){  
+            clearPiece();
             if(checkOverlap(xLocation+panel.getmoveX(), yLocation)==false){
                 dropDelay=0;
                 xLocation+=panel.getmoveX();
@@ -258,15 +279,33 @@ public class Piece extends PieceStack{
                 placePiece();
             }
         }
+        
     }
 
-    public int something(){
-        return getEmptyLineWidth();
+    public void moveZ(){
+        int tempMatrix[][]= new int[pieceSize][pieceSize];
+        int ctrlc;
+        int ctrlv;
+        
+        
+        if(panel.getmoveZ()==1){
+            clearPiece();
+            for(int i=0;i<pieceSize;i++){
+                ctrlv=i;
+                for(int j=pieceSize-1;j>=0;j--){
+                    ctrlc=pieceSize-1-i;
+                    tempMatrix[j][ctrlv]= pieceMatrix[ctrlc][j];
+                }
+            }
+            if(checkOverlap(xLocation, yLocation, tempMatrix)==false){
+                pieceMatrix=tempMatrix.clone();
+                panel.resetmoveZ();
+            }
+            placePiece();
+        }
     }
 
-    public int getylocation(){
-        return yLocation;
-    }
+    
 
     public void dropDelayCheck(){
         switch(dropDelay){
@@ -279,5 +318,9 @@ public class Piece extends PieceStack{
     
     public boolean getPlaced(){
         return placed;
+    }
+
+    public int something(){
+        return getEmptyLineHeight();
     }
 }

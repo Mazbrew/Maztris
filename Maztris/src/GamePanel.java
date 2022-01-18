@@ -10,6 +10,7 @@ public class GamePanel extends JPanel implements KeyListener{
     private int moveXSpeed = 1;
     private boolean hardDrop = false;
     private Board board;
+    private int moveZ=0;
 
 
     public GamePanel(FrameStuff frame, Board board){
@@ -90,6 +91,7 @@ public class GamePanel extends JPanel implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()== KeyEvent.VK_UP){
+            moveZ = 1;
             
         }else if(e.getKeyCode()== KeyEvent.VK_DOWN){
             
@@ -105,6 +107,14 @@ public class GamePanel extends JPanel implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public int getmoveZ(){
+        return moveZ;
+    }
+
+    public void resetmoveZ(){
+        moveZ=0;
     }
 
     public int getmoveX(){

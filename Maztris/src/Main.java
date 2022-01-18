@@ -20,10 +20,12 @@ public class Main {
                 for(int j =0; j<board.getWidth();j++){
                     System.out.print(board.getTileValue(j, i));
                 }
-                System.out.println(" "+piece.something()+" "+piece.getylocation());
+                System.out.println(" "+piece.something());
             }
+
             piece.moveX();
             piece.moveY();
+            piece.moveZ();
             
             TimeUnit.MILLISECONDS.sleep(100);
             panel.repaint();
