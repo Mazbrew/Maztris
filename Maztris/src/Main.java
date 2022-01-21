@@ -27,7 +27,7 @@ public class Main {
             piece.moveY();
             piece.moveZ();
             
-            TimeUnit.MILLISECONDS.sleep(100);
+            TimeUnit.MILLISECONDS.sleep(200);
             panel.repaint();
         }
     }

@@ -72,6 +72,9 @@ public class GamePanel extends JPanel implements KeyListener{
                     case 7:
                         g.setColor(Color.red);
                         break;
+                    case 8:
+                        g.setColor(Color.white);
+                        break;
                 }
                 
                 g.fillRect((j*20)+20, (i*20)+20, 15, 15);

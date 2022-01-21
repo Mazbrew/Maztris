@@ -1,19 +1,26 @@
 public class Board {
     private  int width;
     private  int height;
+    private  int inviswidth=2;
     private final int[][] boardarray;
 
     public Board(int width,int height){
-        this.width = width;
-        this.height= height;
-        boardarray = new int[width][height+1];
+        this.width = width+(2*inviswidth);
+        this.height= height+1;
+        boardarray = new int[this.width][this.height];
         clearBoard();
     }
 
     public void clearBoard(){
         for(int i=0;i<height;i++){
             for(int j=0;j<width;j++){
-                boardarray[j][i] = 0;
+                if(j<inviswidth){
+                    boardarray[j][i] = 8;
+                }else if(j>width-1-inviswidth){
+                    boardarray[j][i]=8;
+                }else{
+                    boardarray[j][i]=0;
+                }
             }
         }
     }
@@ -32,7 +39,12 @@ public class Board {
             }
             if(tileCount==width){
                 for(int j=0;j<width;j++){
-                    boardarray[j][i]=0;
+                    switch(boardarray[j][i]){
+                        case 8:
+                            break;
+                        default:
+                            boardarray[j][i]=0;
+                    }
                 }
                 moveAllDown(i);
                 i--;
@@ -65,6 +77,10 @@ public class Board {
     
     public int getHeight(){
         return height;
+    }
+
+    public int getinviswidth(){
+        return inviswidth;
     }
 
     public void setTile(int x , int y, int type){

@@ -1,6 +1,6 @@
 public class Piece extends PieceStack{
     private Board board;
-    private int xLocation = 3;
+    private int xLocation = 5;
     private int yLocation =  0;
     private int pieceType;
     private int dropDelay;
@@ -62,19 +62,6 @@ public class Piece extends PieceStack{
         boolean check = true;
 
         for(int j = 0; j<pieceSize;j++){
-            if(pieceMatrix[i][j]!=0){
-                check = false;
-                break;
-            }
-        }
-
-        return check;
-    }
-
-    public boolean checkEmptyLineX(int j){
-        boolean check = true;
-
-        for(int i = 0; i<pieceSize;i++){
             if(pieceMatrix[i][j]!=0){
                 check = false;
                 break;
@@ -213,11 +200,13 @@ public class Piece extends PieceStack{
         for(int i=0;i<pieceSize;i++){
             if(checkEmptyLineY(i)==false){
                 for(int j=0;j<pieceSize;j++){
-                    if(board.getTileValue(checkx+j, checky+i) !=0 && pieceMatrix[i][j]!=0){
-                        check = true;
-                        break;
-                    }else{
-                        check=false;
+                    if(checky+i<board.getHeight()){
+                        if(board.getTileValue(checkx+j, checky+i) !=0 && pieceMatrix[i][j]!=0){
+                            check = true;
+                            break;
+                        }else{
+                            check=false;
+                        }
                     }
                 }
                 if(check == true){
@@ -234,11 +223,13 @@ public class Piece extends PieceStack{
         for(int i=0;i<pieceSize;i++){
             if(checkEmptyLineY(i)==false){
                 for(int j=0;j<pieceSize;j++){
-                    if(board.getTileValue(checkx+j, checky+i) !=0 && tempMatrix[i][j]!=0){
-                        check = true;
-                        break;
-                    }else{
-                        check=false;
+                    if(checky+i<board.getHeight()){
+                        if(board.getTileValue(checkx+j, checky+i) !=0 && tempMatrix[i][j]!=0){
+                            check = true;
+                            break;
+                        }else{
+                            check=false;
+                        }
                     }
                 }
                 if(check == true){
@@ -289,6 +280,7 @@ public class Piece extends PieceStack{
         
         
         if(panel.getmoveZ()==1){
+            dropDelay=0;
             clearPiece();
             for(int i=0;i<pieceSize;i++){
                 ctrlv=i;
@@ -300,8 +292,8 @@ public class Piece extends PieceStack{
             if(checkOverlap(xLocation, yLocation, tempMatrix)==false){
                 pieceMatrix=tempMatrix.clone();
                 panel.resetmoveZ();
+                placePiece();
             }
-            placePiece();
         }
     }
 
