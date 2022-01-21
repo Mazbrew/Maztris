@@ -278,10 +278,11 @@ public class Piece extends PieceStack{
         int ctrlc;
         int ctrlv;
         
+        clearPiece();
         
         if(panel.getmoveZ()==1){
             dropDelay=0;
-            clearPiece();
+            
             for(int i=0;i<pieceSize;i++){
                 ctrlv=i;
                 for(int j=pieceSize-1;j>=0;j--){

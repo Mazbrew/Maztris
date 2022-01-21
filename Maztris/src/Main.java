@@ -23,9 +23,10 @@ public class Main {
                 System.out.println(" "+piece.something());
             }
 
+            piece.moveZ();
             piece.moveX();
             piece.moveY();
-            piece.moveZ();
+            
             
             TimeUnit.MILLISECONDS.sleep(200);
             panel.repaint();
